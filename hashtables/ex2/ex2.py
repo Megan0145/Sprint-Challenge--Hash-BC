@@ -14,7 +14,7 @@ class Ticket:
 
 def reconstruct_trip(tickets, length):
     hashtable = HashTable(length)
-    route = [None] * (length - 1)
+    route = [None] * length
 
     """
     YOUR CODE HERE
@@ -38,4 +38,4 @@ def reconstruct_trip(tickets, length):
         route[i] = curr_ticket
    
     # return the route 
-    return route
+    return [r for r in route if r != "NONE"]
