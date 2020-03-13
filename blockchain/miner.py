@@ -50,7 +50,7 @@ def valid_proof(last_hash, proof):
 
     # TODO: Your code here!
     # stringify guess proof and encode
-    guess = f'{last_hash}{proof}'.encode()
+    guess = f'{proof}'.encode()
     # hash the guess and use hexdigest to convert it to hexadecimal characters
     guess_hash = hashlib.sha256(guess).hexdigest()
 
