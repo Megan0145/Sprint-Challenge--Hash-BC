@@ -26,6 +26,11 @@ def proof_of_work(last_proof):
     proof = 0
     #  TODO: Your code here
 
+    # call valid proof passing in last_proof and the value of proof as paramaters so long as it returns False
+    while valid_proof(last_proof, proof) is False:
+        # set proof += to a random integer on each iteration
+        proof += random.randint(1, 500)
+    # when valid proof function returns True return proof
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
 
