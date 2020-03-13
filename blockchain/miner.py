@@ -26,8 +26,12 @@ def proof_of_work(last_proof):
     proof = 0
     #  TODO: Your code here
 
-    # call valid proof passing in last_proof and the value of proof as paramaters so long as it returns False
-    while valid_proof(last_proof, proof) is False:
+    # stringify the last_proof and encode
+    last_proof = f'{last_proof}'.encode()
+    # hash the last_proof and use hexdigest to convert it to hexadecimal characters
+    last_hash = hashlib.sha256(last_proof).hexdigest()
+    # call valid proof passing in hashed last_proof and the value of proof as paramaters so long as it returns False
+    while valid_proof(last_hash, proof) is False:
         # set proof += to a random integer on each iteration
         proof += random.randint(1, 500)
     # when valid proof function returns True return proof
@@ -45,7 +49,16 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+    # stringify guess proof and encode
+    guess = f'{proof}'.encode()
+    # hash the guess and use hexdigest to convert it to hexadecimal characters
+    guess_hash = hashlib.sha256(guess).hexdigest()
+
+    # check if first six characters of guess_hash are equal to the last six characters of last_hash
+    # if so, it's a valid proof -> return True, else return False
+    if guess_hash[:6] == last_hash[-6:]:
+        return True
+    return False
 
 
 if __name__ == '__main__':
